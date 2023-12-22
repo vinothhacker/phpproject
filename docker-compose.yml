@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  php-app:
+    image: your-php-image-name
+    build:
+      context: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: database-2.cd00ioqg2b8z.ap-south-1.rds.amazonaws.com
+      DB_USERNAME: admin
+      DB_PASSWORD: 12345678
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: library
+      MYSQL_USER: your_database_username
+      MYSQL_PASSWORD: your_database_password
+    ports:
+      - "3306:3306"
